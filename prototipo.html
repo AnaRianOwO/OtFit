@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>OtFit Prototipo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    #contenedorAvatar {
+      position: relative;
+      width: 300px;
+      height: 500px;
+      border: 3px dashed #ccc;
+    }
+
+    #avatarBase {
+      color: #ffccaa;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .clothingItem {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      margin: auto;
+    }
+
+    #clothingOptions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .clothingOption {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    .clothingOption:hover {
+      border-color: #ff66b2
+    }
+
+    
+  </style>
+</head>
+<body>
+<h1>Creador de OtFit</h1>
+
+<div id="contenedorAvatar">
+  <img id="avatarBase" src="img/baseAvatar.svg" alt="Base del avatar">
+</div>
+
+<div id="clothingOptions">
+  <img class="clothingOption" src="img/pants.svg" data-type="bottom" alt="Pants">
+  <img class="clothingOption" src="img/sweater.svg" data-type="top" alt="Sweater">
+  <img class="clothingOption" src="img/t-shirt.svg" data-type="top" alt="T-shirt">
+  <img class="clothingOption" src="img/skirt.svg" data-type="bottom" alt="Skirt">
+</div>
+
+<button id=""></button>
+<input type="color" id="colorPicker" value="#ff66b2">
+<script>
+  document.getElementById('colorPicker').addEventListener('input', (e) => {
+    const color = e.target.value;
+    document.querySelectorAll('.clothingItem').forEach(item => {
+      item.style.color = color;
+    });
+  });
+  
+  document.querySelectorAll('.clothingOption').forEach(item=> {
+    item.addEventListener('click', () =>{
+      const type = item.getAttribute('data-type');
+      const src = item.getAttribute('src');
+
+      const oldItem = document.querySelector(`.clothingItem[data-type="${type}"]`);
+      if (oldItem) oldItem.remove();
+
+      const newItem = document.createElement('img');
+      newItem.src = src;
+      newItem.className = 'clothingItem';
+      newItem.setAttribute('data-type', type);
+      document.getElementById('contenedorAvatar').appendChild(newItem); 
+    });
+  });
+  
+</script>
+
+</body>
+</html>
