@@ -5,6 +5,7 @@
   <title>OtFit Prototipo</title>
   <style>
     body {
+      background-color: #A5A5A5;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -53,47 +54,62 @@
       border-color: #ff66b2
     }
 
-    
+    [data-layer="base"] { z-index: 1; }
+    [data-layer="middle"] { z-index: 2; }
+    [data-type="bottom"] { z-index: 3; }
+    [data-layer="top"] { z-index: 4; }
   </style>
 </head>
 <body>
 <h1>Creador de OtFit</h1>
 
 <div id="contenedorAvatar">
-  <img id="avatarBase" src="img/baseAvatar.svg" alt="Base del avatar">
+  <img id="avatarBase" src="img/model-prueba.svg" alt="Base del avatar">
 </div>
 
 <div id="clothingOptions">
+  <!-- Capa base (prendas que van debajo) -->
+  <img class="clothingOption" src="img/t-shirt.svg" data-type="top" data-layer="base" alt="T-shirt">
+  <img class="clothingOption" src="img/crop-top.svg" data-type="top" data-layer="base" alt="Crop-Top">
+  <img class="clothingOption" src="img/tank-top.svg" data-type="top" data-layer="base" alt="Tank-Top">
+
+  <!-- Capa intermedia (prendas que pueden ir encima de otras) --> 
+  <img class="clothingOption" src="img/hoodie.svg" data-type="top" data-layer="middle" alt="Hoodie">
+  <img class="clothingOption" src="img/sweater.svg" data-type="top" data-layer="middle" alt="Sweater">
+  
+   <!-- Capa superior (prendas que van encima de todo) -->
+  <img class="clothingOption" src="img/jacket.svg" data-type="top" data-layer="top" alt="Jacket">  
+   
+  <img class="clothingOption" src="img/mini-skirt.svg" data-type="bottom" alt="Mini-skirt">
+  <img class="clothingOption" src="img/overall.svg" data-type="bottom" alt="Overall">
   <img class="clothingOption" src="img/pants.svg" data-type="bottom" alt="Pants">
-  <img class="clothingOption" src="img/sweater.svg" data-type="top" alt="Sweater">
-  <img class="clothingOption" src="img/t-shirt.svg" data-type="top" alt="T-shirt">
   <img class="clothingOption" src="img/skirt.svg" data-type="bottom" alt="Skirt">
 </div>
 
-<button id=""></button>
-<input type="color" id="colorPicker" value="#ff66b2">
-<script>
-  document.getElementById('colorPicker').addEventListener('input', (e) => {
-    const color = e.target.value;
-    document.querySelectorAll('.clothingItem').forEach(item => {
-      item.style.color = color;
-    });
-  });
-  
+<button id="reset-btn">Reset Outfit</button>
+<script>  
   document.querySelectorAll('.clothingOption').forEach(item=> {
     item.addEventListener('click', () =>{
       const type = item.getAttribute('data-type');
+      const layer = item.getAttribute('data-layer') || 'base';
       const src = item.getAttribute('src');
+      const alt = item.getAttribute('alt');
 
-      const oldItem = document.querySelector(`.clothingItem[data-type="${type}"]`);
+      const oldItem = document.querySelector(`.clothingItem[data-type="${type}"][data-layer="${layer}"]`);
       if (oldItem) oldItem.remove();
 
       const newItem = document.createElement('img');
       newItem.src = src;
       newItem.className = 'clothingItem';
       newItem.setAttribute('data-type', type);
+      newItem.setAttribute('data-layer', layer);
+      newItem.setAttribute('alt', alt);
       document.getElementById('contenedorAvatar').appendChild(newItem); 
     });
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('contenedorAvatar').innerHTML = '<img id="avatarBase" src="img/model-prueba.svg" alt="Base del avatar">';
   });
   
 </script>
