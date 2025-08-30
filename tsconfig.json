@@ -1,3 +1,4 @@
 {
-  "extends": "@react-native/typescript-config"
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base"
 }
