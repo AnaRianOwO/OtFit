@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   clothingItem: {
     width: '100%',
-    height: '100%',
+    height: '92%',
     position: 'absolute',
     resizeMode: 'contain',
   },
