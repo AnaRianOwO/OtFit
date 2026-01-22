@@ -12,7 +12,7 @@ export function HomeScreen () {
 
     return (
         <SafeScreen>
-            <TitleSection title="Crear Outfit"/>
+            <TitleSection title="Crear Outfit" />
             <Line />
         </SafeScreen>
     );
