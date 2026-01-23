@@ -5,21 +5,21 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>¡Bienvenid@! 👋</Text>
+      <Text style={styles.title}>¡Bienvenido!</Text>
       <Text style={styles.subtitle}>Elige una opción:</Text>
       
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('OtfitCreator')}
       >
-        <Text style={styles.buttonText}>Ir a Otfit Creator 👗</Text>
+        <Text style={styles.buttonText}>Ir a Otfit Creator </Text>
       </TouchableOpacity>
       
       <TouchableOpacity
         style={[styles.button, styles.secondaryButton]}
         onPress={() => navigation.navigate('NuevaPantalla')}
       >
-        <Text style={styles.buttonText}>Ir a Nueva Pantalla 🆕</Text>
+        <Text style={styles.buttonText}>Ir a Nueva Pantalla</Text>
       </TouchableOpacity>
     </View>
   );

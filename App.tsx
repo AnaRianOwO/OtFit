@@ -1,28 +1,42 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+// Importa tus pantallas
+import HomeScreen from './screens/HomeScreen';
+import OtfitCreator from './screens/OtfitCreator';
+import NuevaPantalla from './screens/NuevaPantalla';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+// Define los tipos de rutas
+type RootStackParamList = {
+  Home: undefined;
+  OtfitCreator: undefined;
+  NuevaPantalla: undefined;
+};
 
+// Para React Navigation 7, NO necesitas pasar tipos genéricos
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen}
+          options={{ title: 'Inicio' }}
+        />
+        <Stack.Screen 
+          name="OtfitCreator" 
+          component={OtfitCreator}
+          options={{ title: 'Creador de Outfits' }}
+        />
+        <Stack.Screen 
+          name="NuevaPantalla" 
+          component={NuevaPantalla}
+          options={{ title: 'Nueva Pantalla' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;

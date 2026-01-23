@@ -65,7 +65,7 @@ const NuevaPantalla = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
-          <Text style={styles.title}>🎨 Selecciona tus 3 colores favoritos</Text>
+          <Text style={styles.title}> Selecciona tus 3 colores favoritos</Text>
           <Text style={styles.subtitle}>
             Toca los colores que más te gusten (Máximo {maxSelections})
           </Text>
