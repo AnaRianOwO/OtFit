@@ -54,7 +54,7 @@ const TRENDING_OUTFITS: Outfit[] = [
     {
         id: '6',
         name: 'Elegant Evening',
-        color: '#ad4444',
+        color: '#ad6a44',
         items: [],
         rating: 4.9,
         createdAt: new Date().toISOString(),
