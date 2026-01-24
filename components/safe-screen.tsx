@@ -10,7 +10,7 @@ interface SafeScreenProps extends ViewProps {
 
 export function SafeScreen({ 
     children, 
-    padding = 16,
+    padding = 10,
     style,
     ...props 
 }: SafeScreenProps) {
@@ -25,7 +25,6 @@ export function SafeScreen({
             flex: 1,
             backgroundColor,
             paddingTop: insets.top + padding,
-            paddingBottom: insets.bottom + padding,
             paddingLeft: insets.left + padding,
             paddingRight: insets.right + padding,
         },
