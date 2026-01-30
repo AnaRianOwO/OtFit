@@ -7,126 +7,135 @@ import {
   ScrollView,
   Alert,
   SafeAreaView,
+  Image, 
+  ImageSourcePropType, 
 } from 'react-native';
 
-const NuevaPantalla = () => {
-  const [selectedColors, setSelectedColors] = useState([]);
+
+interface Estilo {
+  id: number;
+  name: string;
+  image: ImageSourcePropType;
+}
+
+const EstilosSelect: React.FC = () => {
+  const [selectedEstilos, setSelectedEstilos] = useState<number[]>([]);
   const maxSelections = 3;
 
-  // Lista de 10 colores atractivos
-  const colors = [
-    { id: 1, name: 'Rojo Pasión', hex: '#FF6B6B' },
-    { id: 2, name: 'Azul Profundo', hex: '#4ECDC4' },
-    { id: 3, name: 'Verde Esmeralda', hex: '#1DD1A1' },
-    { id: 4, name: 'Amarillo Sol', hex: '#FECA57' },
-    { id: 5, name: 'Morado Real', hex: '#5F27CD' },
-    { id: 6, name: 'Rosa Chicle', hex: '#FF9FF3' },
-    { id: 7, name: 'Naranja Vibrante', hex: '#FF9F43' },
-    { id: 8, name: 'Turquesa', hex: '#54A0FF' },
-    { id: 9, name: 'Lila Suave', hex: '#C8D6E5' },
-    { id: 10, name: 'Verde Mentha', hex: '#00D2D3' },
+
+  const estilos: Estilo[] = [
+    { id: 1, name: 'Clásico', image: require('../assets/images/classic.jpg') },
+    { id: 2, name: 'Boho', image: require('../assets/images/boho.jpg') },
+    { id: 3, name: 'Minimalista', image: require('../assets/images/minimal.jpg') },
+    { id: 4, name: 'Sporty', image: require('../assets/images/sporty.jpg') },
+    { id: 5, name: 'Retro', image: require('../assets/images/retro.jpg') },
+    { id: 6, name: 'Preppy', image: require('../assets/images/preppy.jpg') },
+    { id: 7, name: 'Old money', image: require('../assets/images/oldmoney.jpg') },
+    { id: 8, name: 'Grunge', image: require('../assets/images/grunge.jpg') },
+    { id: 9, name: 'Comfy', image: require('../assets/images/comfy.jpg') },
+    { id: 10, name: 'Gótico', image: require('../assets/images/gotico.jpg') },
   ];
 
-  const handleColorSelect = (color) => {
-    // Si el color ya está seleccionado, lo quitamos
-    if (selectedColors.includes(color.id)) {
-      setSelectedColors(selectedColors.filter(id => id !== color.id));
+  const handleEstiloSelect = (estilo: Estilo): void => {
+    if (selectedEstilos.includes(estilo.id)) {
+      setSelectedEstilos(selectedEstilos.filter(id => id !== estilo.id));
       return;
     }
 
-    // Si ya seleccionó 3 colores, mostramos alerta
-    if (selectedColors.length >= maxSelections) {
+    if (selectedEstilos.length >= maxSelections) {
       Alert.alert(
         'Límite alcanzado',
-        `Solo puedes seleccionar ${maxSelections} colores`,
+        `Solo puedes seleccionar ${maxSelections} estilos`,
         [{ text: 'OK' }]
       );
       return;
     }
 
-    // Agregar el nuevo color
-    setSelectedColors([...selectedColors, color.id]);
+    setSelectedEstilos([...selectedEstilos, estilo.id]);
   };
 
-  const isSelected = (colorId) => selectedColors.includes(colorId);
+  const isSelected = (estiloId: number): boolean => {
+    return selectedEstilos.includes(estiloId);
+  };
 
-  const getSelectedColorNames = () => {
-    return selectedColors.map(id => {
-      const color = colors.find(c => c.id === id);
-      return color ? color.name : '';
+  const getSelectedEstiloNames = (): string[] => {
+    return selectedEstilos.map(id => {
+      const estilo = estilos.find(s => s.id === id);
+      return estilo ? estilo.name : '';
     });
   };
 
-  const resetSelection = () => {
-    setSelectedColors([]);
+  const resetSelection = (): void => {
+    setSelectedEstilos([]);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
-          <Text style={styles.title}> Selecciona tus 3 colores favoritos</Text>
+          <Text style={styles.title}>🎨 Selecciona tus 3 estilos favoritos</Text>
           <Text style={styles.subtitle}>
-            Toca los colores que más te gusten (Máximo {maxSelections})
+            Toca los estilos que más te gusten (Máximo {maxSelections})
           </Text>
           
           <View style={styles.counterContainer}>
             <Text style={styles.counterText}>
-              Seleccionados: {selectedColors.length}/{maxSelections}
+              Seleccionados: {selectedEstilos.length}/{maxSelections}
             </Text>
           </View>
         </View>
 
-        {/* Lista de colores */}
-        <View style={styles.colorsGrid}>
-          {colors.map((color) => (
+        <View style={styles.estilosGrid}>
+          {estilos.map((estilo) => (
             <TouchableOpacity
-              key={color.id}
-              style={[
-                styles.colorItem,
-                {
-                  backgroundColor: color.hex,
-                  borderColor: isSelected(color.id) ? '#333' : 'transparent',
-                },
-              ]}
-              onPress={() => handleColorSelect(color)}
-              activeOpacity={0.7}
-            >
-              {isSelected(color.id) && (
-                <View style={styles.selectedIndicator}>
-                  <Text style={styles.selectedIcon}>✓</Text>
+              key={estilo.id}
+                style={[
+                  styles.estiloItem,
+                  {
+                    borderColor: isSelected(estilo.id) ? '#333' : 'transparent',
+                  },
+                ]}
+                onPress={() => handleEstiloSelect(estilo)}
+                activeOpacity={0.7}
+              >
+
+                <View style={styles.imageContainer}>
+                  <Image 
+                    source={estilo.image}
+                    style={styles.estiloImage}
+                    resizeMode="cover"
+                  />
                 </View>
-              )}
-              <View style={styles.colorInfo}>
-                <Text style={[
-                  styles.colorName,
-                  { color: getTextColor(color.hex) }
-                ]}>
-                  {color.name}
-                </Text>
-                <Text style={[
-                  styles.colorHex,
-                  { color: getTextColor(color.hex) }
-                ]}>
-                  {color.hex}
-                </Text>
-              </View>
+
+                <View style={styles.imageOverlay} />
+                
+                {isSelected(estilo.id) && (
+                  <View style={styles.selectedIndicator}>
+                    <Text style={styles.selectedIcon}>✓</Text>
+                  </View>
+                )}
+                
+                <View style={styles.estiloInfo}>
+                  <Text style={styles.estiloName}>
+                    {estilo.name}
+                  </Text>
+                </View>
             </TouchableOpacity>
           ))}
         </View>
 
         {/* Información de selección */}
-        {selectedColors.length > 0 && (
+        {selectedEstilos.length > 0 && (
           <View style={styles.selectionInfo}>
-            <Text style={styles.selectionTitle}>Tus colores seleccionados:</Text>
+            <Text style={styles.selectionTitle}>Tus estilos seleccionados:</Text>
             <View style={styles.selectedList}>
-              {getSelectedColorNames().map((name, index) => (
+              {getSelectedEstiloNames().map((name, index) => (
                 <View key={index} style={styles.selectedTag}>
-                  <View 
-                    style={[
-                      styles.selectedColorDot, 
-                      { backgroundColor: colors.find(c => c.name === name)?.hex }
-                    ]} 
+                  {/* Mini preview de la imagen */}
+                  <Image 
+                    source={estilos.find(e => e.name === name)?.image || estilos[0].image}
+                    style={styles.selectedImagePreview}
+                    resizeMode="cover"
                   />
                   <Text style={styles.selectedTagText}>{name}</Text>
                 </View>
@@ -140,11 +149,11 @@ const NuevaPantalla = () => {
           <TouchableOpacity
             style={styles.resetButton}
             onPress={resetSelection}
-            disabled={selectedColors.length === 0}
+            disabled={selectedEstilos.length === 0}
           >
             <Text style={[
               styles.resetButtonText,
-              selectedColors.length === 0 && styles.disabledText
+              selectedEstilos.length === 0 && styles.disabledText
             ]}>
               Reiniciar selección
             </Text>
@@ -153,16 +162,16 @@ const NuevaPantalla = () => {
           <TouchableOpacity
             style={[
               styles.confirmButton,
-              selectedColors.length === 0 && styles.disabledButton
+              selectedEstilos.length === 0 && styles.disabledButton
             ]}
             onPress={() => {
               Alert.alert(
                 'Selección guardada',
-                `Has seleccionado ${selectedColors.length} color(es)`,
+                `Has seleccionado ${selectedEstilos.length} estilo(s)`,
                 [{ text: 'OK' }]
               );
             }}
-            disabled={selectedColors.length === 0}
+            disabled={selectedEstilos.length === 0}
           >
             <Text style={styles.confirmButtonText}>
               Confirmar selección
@@ -174,24 +183,20 @@ const NuevaPantalla = () => {
   );
 };
 
-// Función para determinar si usar texto blanco o negro según el fondo
-const getTextColor = (hexColor) => {
-  // Convierte hex a RGB
-  const r = parseInt(hexColor.slice(1, 3), 16);
-  const g = parseInt(hexColor.slice(3, 5), 16);
-  const b = parseInt(hexColor.slice(5, 7), 16);
-  
-  // Fórmula de luminosidad
-  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-  
-  return brightness > 128 ? '#000000' : '#FFFFFF';
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F9FA',
   },
+   imageContainer: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: 'hidden',
+    borderRadius: 12, 
+  },
+  estiloImage: {
+      width: '100%',
+      height: '100%',
+    },
   scrollContainer: {
     padding: 20,
     paddingBottom: 40,
@@ -224,28 +229,27 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#495057',
   },
-  colorsGrid: {
+  estilosGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginBottom: 30,
   },
-  colorItem: {
-    width: '48%', // Dos columnas
+  estiloItem: {
+    width: '48%',
     height: 120,
     borderRadius: 15,
     marginBottom: 15,
     padding: 15,
     justifyContent: 'space-between',
     borderWidth: 3,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
+    overflow: 'hidden', 
+    position: 'relative',
+  },
+
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)', 
   },
   selectedIndicator: {
     position: 'absolute',
@@ -259,22 +263,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#333',
+    zIndex: 10, 
   },
   selectedIcon: {
     fontSize: 14,
     fontWeight: 'bold',
     color: '#333',
   },
-  colorInfo: {
-    marginTop: 'auto',
+  estiloInfo: {
+    zIndex: 5, 
   },
-  colorName: {
+  estiloName: {
     fontSize: 14,
     fontWeight: 'bold',
-  },
-  colorHex: {
-    fontSize: 12,
-    opacity: 0.9,
+    color: 'white', 
+    textShadowColor: 'rgba(0, 0, 0, 0.7)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
   selectionInfo: {
     backgroundColor: 'white',
@@ -311,10 +316,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
-  selectedColorDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+  selectedImagePreview: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
     marginRight: 6,
   },
   selectedTagText: {
@@ -358,5 +363,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NuevaPantalla;
-
+export default EstilosSelect;

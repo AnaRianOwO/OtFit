@@ -4,17 +4,10 @@ import { View, Image, StyleSheet } from 'react-native';
 export default function Avatar({ outfit, width = 300, height = 500 }) {
   return (
     <View style={[styles.avatarContainer, { width, height }]}>
-      {/* Avatar base */}
-      <Image 
-        source={require('../assets/images/model-prueba.png')} 
-        style={styles.avatarBase} 
-      />
       
-      {/* Prendas */}
       {outfit.base && (
         <Image source={outfit.base.source} style={styles.clothingItem} />
       )}
-      {/* ... más prendas */}
     </View>
   );
 }

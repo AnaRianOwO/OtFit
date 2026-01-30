@@ -1,20 +1,17 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-// Importa tus pantallas
 import HomeScreen from './screens/HomeScreen';
 import OtfitCreator from './screens/OtfitCreator';
-import NuevaPantalla from './screens/NuevaPantalla';
+import ColorsSelect from './screens/ColorsSelect';
+import StyleSelect from './screens/StyleSelect';
 
-// Define los tipos de rutas
 type RootStackParamList = {
   Home: undefined;
   OtfitCreator: undefined;
   NuevaPantalla: undefined;
 };
 
-// Para React Navigation 7, NO necesitas pasar tipos genéricos
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -32,9 +29,14 @@ export default function App() {
           options={{ title: 'Creador de Outfits' }}
         />
         <Stack.Screen 
-          name="NuevaPantalla" 
-          component={NuevaPantalla}
-          options={{ title: 'Nueva Pantalla' }}
+          name="ColorsSelect" 
+          component={ColorsSelect}
+          options={{ title: 'Seleccionar colores favoritos' }}
+        />
+        <Stack.Screen 
+          name="StyleSelect" 
+          component={StyleSelect}
+          options={{ title: 'Seleccionar estilos favoritos' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

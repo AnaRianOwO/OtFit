@@ -54,10 +54,6 @@ export default function OutfitCreator() {
         width: isSmallDevice ? 250 : 300, 
         height: isSmallDevice ? 400 : 500 
       }]}>
-        <Image 
-          source={require('../assets/images/model-prueba.png')} 
-          style={styles.avatarBase} 
-        />
         
         {outfit.base && (
           <Image source={outfit.base.source} style={styles.clothingItem} />

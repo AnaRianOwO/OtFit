@@ -17,9 +17,16 @@ const HomeScreen = ({ navigation }) => {
       
       <TouchableOpacity
         style={[styles.button, styles.secondaryButton]}
-        onPress={() => navigation.navigate('NuevaPantalla')}
+        onPress={() => navigation.navigate('ColorsSelect')}
       >
-        <Text style={styles.buttonText}>Ir a Nueva Pantalla</Text>
+        <Text style={styles.buttonText}>Ir a Selector de colores</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button]}
+        onPress={() => navigation.navigate('StyleSelect')}
+      >
+        <Text style={styles.buttonText}>Ir a Selector de estilos</Text>
       </TouchableOpacity>
     </View>
   );
