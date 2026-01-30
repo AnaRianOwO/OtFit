@@ -15,7 +15,7 @@ export function SafeScreen({
     ...props 
 }: SafeScreenProps) {
     const insets = useSafeAreaInsets();
-    const colorScheme = useColorScheme() || 'light';
+    const colorScheme = useColorScheme() || 'dark';
     const backgroundColor = Colors[colorScheme].screenBackground;
 
     return (

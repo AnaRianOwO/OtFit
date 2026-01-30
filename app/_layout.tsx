@@ -18,7 +18,8 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" /> 
+      {/* Se selecciona 'dark' en el status bar para poder ver los iconos negros, sin embargo se deja en 'auto' para que cambie ese color dependiendo del color de fondo  */}
     </ThemeProvider>
   );
 }

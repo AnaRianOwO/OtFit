@@ -23,7 +23,7 @@ export const Colors = {
     text: '#11181C',
     background: '#151718',
     // screenBackground: '#12130f',
-    screenBackground: '#F7F9ED',
+    screenBackground: '#FBF5F3',
     tint: tintColorDark,
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
