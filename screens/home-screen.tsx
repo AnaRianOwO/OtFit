@@ -110,7 +110,7 @@ export function HomeScreen () {
                     previewColor={`${item.color}20`}
                 />
             )}
-            contentContainerStyle={{ paddingBottom: 20 }}
+            contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator = {false}
             />
         </SafeScreen>

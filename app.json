@@ -18,12 +18,9 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": false,
+      "isTablet": true,
+      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
-    },
-    "androidNavigationBar": {
-      "backgroundColor": "#000000",
-      "barStyle": "light-content"
     },
     "web": {
       "output": "static",
