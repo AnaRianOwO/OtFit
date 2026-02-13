@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Alert,
-  SafeAreaView,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, SafeAreaView} from 'react-native';
+import { ThemedView } from '@/components/themed-view';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from '@/constants/theme';
+import { SafeScreen } from '@/components/safe-screen';
+
+const colorScheme = useColorScheme();
 
 const ColorsSelect = () => {
   const [selectedColors, setSelectedColors] = useState([]);
@@ -28,13 +26,11 @@ const ColorsSelect = () => {
   ];
 
   const handleColorSelect = (color) => {
-    // Si el color ya está seleccionado, lo quitamos
     if (selectedColors.includes(color.id)) {
       setSelectedColors(selectedColors.filter(id => id !== color.id));
       return;
     }
 
-    // Si ya seleccionó 3 colores, mostramos alerta
     if (selectedColors.length >= maxSelections) {
       Alert.alert(
         'Límite alcanzado',
@@ -44,7 +40,6 @@ const ColorsSelect = () => {
       return;
     }
 
-    // Agregar el nuevo color
     setSelectedColors([...selectedColors, color.id]);
   };
 
@@ -62,7 +57,7 @@ const ColorsSelect = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeScreen>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
           <Text style={styles.title}> Selecciona tus 3 colores favoritos</Text>
@@ -77,7 +72,7 @@ const ColorsSelect = () => {
           </View>
         </View>
 
-        {/* Lista de colores */}
+        //Lista de colores
         <View style={styles.colorsGrid}>
           {colors.map((color) => (
             <TouchableOpacity
@@ -115,7 +110,7 @@ const ColorsSelect = () => {
           ))}
         </View>
 
-        {/* Información de selección */}
+	//Aquí se ven los colores seleccionados
         {selectedColors.length > 0 && (
           <View style={styles.selectionInfo}>
             <Text style={styles.selectionTitle}>Tus colores seleccionados:</Text>
@@ -135,7 +130,7 @@ const ColorsSelect = () => {
           </View>
         )}
 
-        {/* Botones de acción */}
+        // Botones de acción 
         <View style={styles.actions}>
           <TouchableOpacity
             style={styles.resetButton}
@@ -170,18 +165,16 @@ const ColorsSelect = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </SafeScreen>
   );
 };
 
 // Función para determinar si usar texto blanco o negro según el fondo
 const getTextColor = (hexColor) => {
-  // Convierte hex a RGB
   const r = parseInt(hexColor.slice(1, 3), 16);
   const g = parseInt(hexColor.slice(3, 5), 16);
   const b = parseInt(hexColor.slice(5, 7), 16);
   
-  // Fórmula de luminosidad
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
   
   return brightness > 128 ? '#000000' : '#FFFFFF';
