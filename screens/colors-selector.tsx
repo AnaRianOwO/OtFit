@@ -10,8 +10,7 @@ const colorScheme = useColorScheme();
 const ColorsSelect = () => {
   const [selectedColors, setSelectedColors] = useState([]);
   const maxSelections = 3;
-
-  // Lista de 10 colores atractivos
+  
   const colors = [
     { id: 1, name: 'Rojo Pasión', hex: '#FF6B6B' },
     { id: 2, name: 'Azul Profundo', hex: '#4ECDC4' },
@@ -72,7 +71,6 @@ const ColorsSelect = () => {
           </View>
         </View>
 
-        //Lista de colores
         <View style={styles.colorsGrid}>
           {colors.map((color) => (
             <TouchableOpacity
@@ -110,7 +108,6 @@ const ColorsSelect = () => {
           ))}
         </View>
 
-	//Aquí se ven los colores seleccionados
         {selectedColors.length > 0 && (
           <View style={styles.selectionInfo}>
             <Text style={styles.selectionTitle}>Tus colores seleccionados:</Text>
@@ -130,7 +127,6 @@ const ColorsSelect = () => {
           </View>
         )}
 
-        // Botones de acción 
         <View style={styles.actions}>
           <TouchableOpacity
             style={styles.resetButton}
@@ -169,7 +165,6 @@ const ColorsSelect = () => {
   );
 };
 
-// Función para determinar si usar texto blanco o negro según el fondo
 const getTextColor = (hexColor) => {
   const r = parseInt(hexColor.slice(1, 3), 16);
   const g = parseInt(hexColor.slice(3, 5), 16);
@@ -224,7 +219,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   colorItem: {
-    width: '48%', // Dos columnas
+    width: '48%', 
     height: 120,
     borderRadius: 15,
     marginBottom: 15,

@@ -11,7 +11,6 @@ export default function ArmarioScreen() {
     <ThemedView style={styles.container}>
       <View style={styles.content}>
         <Text style={[styles.title, { color: Colors[colorScheme ?? 'light'].text }]}>
-          Armario
         </Text>
         <Text style={[styles.description, { color: Colors[colorScheme ?? 'light'].text }]}>
           Aquí irán tus prendas
