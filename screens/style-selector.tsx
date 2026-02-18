@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Alert,
-  SafeAreaView,
-  Image, 
-  ImageSourcePropType, 
-} from 'react-native';
-
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, SafeAreaView, Image,  ImageSourcePropType} from 'react-native';
+import { ThemedView } from '@/components/themed-view';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from '@/constants/theme';
+import { SafeScreen } from '@/components/safe-screen';
 
 interface Estilo {
   id: number;
@@ -70,7 +63,7 @@ const EstilosSelect: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeScreen style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
           <Text style={styles.title}>🎨 Selecciona tus 3 estilos favoritos</Text>
@@ -179,7 +172,7 @@ const EstilosSelect: React.FC = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </SafeScreen>
   );
 };
 
