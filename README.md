@@ -78,8 +78,8 @@ Then scan the QR code with **Expo Go** on your phone, or press `a` to open the A
 ## Roadmap
 
 - [x] Project architecture and setup
-- [x] Wardrobe photo upload flow
-- [x] AI outfit suggestion engine
+- [ ] Wardrobe photo upload flow
+- [ ] AI outfit suggestion engine
 - [ ] User authentication
 - [ ] Outfit history and favorites
 - [ ] Style preferences and filters
