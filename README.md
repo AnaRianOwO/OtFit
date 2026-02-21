@@ -18,7 +18,6 @@ No more standing in front of your closet not knowing what to wear.
 
 - 📸 **Photo-based wardrobe** — Add clothing items by taking or uploading photos
 - 🤖 **AI outfit suggestions** — Get personalized outfit combinations generated from your wardrobe
-- 📱 **Cross-platform** — Runs on Android and iOS via Expo
 - 🗂️ **Wardrobe management** — Organize and browse your clothing catalog
 
 ---
