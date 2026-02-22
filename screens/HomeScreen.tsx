@@ -1,8 +1,10 @@
 // screens/HomeScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-const HomeScreen = ({ navigation }) => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation';
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+const HomeScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>¡Bienvenido!</Text>
