@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { WardrobeScreen } from "@/screens/wardrobe-screen";
 
 import { ThemedView } from '@/components/themed-view';
 import { useColorScheme } from '@/hooks/use-color-scheme';

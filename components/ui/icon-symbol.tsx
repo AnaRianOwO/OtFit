@@ -16,6 +16,7 @@ const MAPPING = {
   'house.fill': 'home-variant',
   'hanger': 'wardrobe',
   'magnifyingglass': 'magnify',
+  'person.fill': 'face-man-profile',
 } as IconMapping;
 
 export function IconSymbol({
